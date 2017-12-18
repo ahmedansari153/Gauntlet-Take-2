@@ -13,7 +13,6 @@ Gauntlet.GuildHall.PlayerClass = function() {
   this.strengthBonus = 0;
   this.intelligenceBonus = 0;
   this.magical = false;
-
   this.toString = function() {
     return this.name;
   }

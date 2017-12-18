@@ -35,20 +35,28 @@ $(document).ready(function() {
     switch (nextCard) {
       case "card--class":
         charValues.heroName = $('#player-name').val();
+        hero.setName(charValues.heroName);
         moveAlong = (charValues.heroName !== "");
         break;
       case "card--weapon":
         charValues.charClass = window.location.hash.substr(1);
+        hero.setClass(new Gauntlet.GuildHall[charValues.charClass]());
         moveAlong = (charValues.charClass !== "")
+        if (hero.class.magical == true) {
+          $('#kineticWeap').hide();
+          $('#magicWeap').show();
+        }
+        else {
+          $('#magicWeap').hide();
+          $('#kineticWeap').show();
+        }
         break;
       case "card--battleground":
         charValues.weapon = window.location.hash.substr(1);
-        hero.setName(charValues.heroName);
         hero.setWeapon(new window[charValues.weapon]());
-        hero.setClass(new Gauntlet.GuildHall[charValues.charClass]());
         moveAlong = (charValues.weapon !== "");
     }
-
+    console.log(hero)
     if (moveAlong) {
       $(".card").hide();
       $("." + nextCard).show();
