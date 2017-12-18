@@ -21,6 +21,7 @@ $(document).ready(function() {
         moveAlong = (charValues.heroName !== "");
         for (var i = 0; i < hero.allowedClasses.length; i++) {
           console.log(hero.allowedClasses[i]);
+          //Only show the allowed classes in the DOM
           $('#class-btns').append(
               "<div class="+'col-sm-4'+">"+
                 "<div class="+'card__button'+">" +
@@ -34,6 +35,7 @@ $(document).ready(function() {
         break;
       case "card--name":
         charValues.race = window.location.hash.substr(1);
+        //Create our hero depending on the race pick.
         hero = new Gauntlet.Combatants[charValues.race]();
         moveAlong = (charValues.race !== "")
         console.log(hero)
