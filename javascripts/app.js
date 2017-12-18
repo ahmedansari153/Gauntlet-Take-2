@@ -19,11 +19,12 @@ console.log("spell: ", spell.toString());
 
 
 $(document).ready(function() {
+  var hero = new Gauntlet.Combatants.Human();
   /*
     Show the initial view that accepts player name
    */
   $("#player-setup").show();
-
+  var charValues= []
   /*
     When any button with card__link class is clicked,
     move on to the next view.
@@ -31,19 +32,21 @@ $(document).ready(function() {
   $(".card__link").click(function(e) {
     var nextCard = $(this).attr("next");
     var moveAlong = false;
-
     switch (nextCard) {
       case "card--class":
-        var heroName = $('#player-name').val();
-        moveAlong = (heroName !== "");
+        charValues.heroName = $('#player-name').val();
+        moveAlong = (charValues.heroName !== "");
         break;
       case "card--weapon":
-        var charClass = window.location.hash.substr(1);
-        moveAlong = (charClass !== "")
+        charValues.charClass = window.location.hash.substr(1);
+        moveAlong = (charValues.charClass !== "")
         break;
       case "card--battleground":
-        var weapon = window.location.has.substr(1);
-        moveAlong = (weapon !== "")
+        charValues.weapon = window.location.hash.substr(1);
+        hero.setName(charValues.heroName);
+        hero.setWeapon(new window[charValues.weapon]());
+        hero.setClass(new Gauntlet.GuildHall[charValues.charClass]());
+        moveAlong = (charValues.weapon !== "");
     }
 
     if (moveAlong) {

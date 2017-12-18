@@ -39,6 +39,9 @@ Gauntlet.Combatants.Player = function(name) {
     return output;
   };
 };
+Gauntlet.Combatants.Player.prototype.setName = function(name) {
+  this.playerName = name;
+}
 
 Gauntlet.Combatants.Player.prototype.setWeapon = function(newWeapon) {
   this.weapon = newWeapon;
