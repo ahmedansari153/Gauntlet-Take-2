@@ -36,6 +36,6 @@ Gauntlet.SpellBook.Fira = function() {
   this.name = "fira";
   this.damage = Math.floor(Math.random() * 10 + 10);
   var random = Math.round(Math.random() * (this.damageTypes.length - 1));
-  this.type = "fire";
+  this.type = this.damageTypes[random];
 };
 Gauntlet.SpellBook.Sphere.prototype = new Gauntlet.SpellBook.Spell();
