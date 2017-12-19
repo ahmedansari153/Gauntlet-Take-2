@@ -116,7 +116,7 @@
           </a>          
         </div>
         <div class="container-fluid">
-        <div class="row" id="kineticWeap">
+        <div class="row kineticWeap">
           <div class="col-sm-4">
             <div class="card__button">
               <a class="class__link btn btn--big btn--blue" href="#Dagger">
@@ -171,7 +171,7 @@
       </div>
 
       <div class="card__button">
-        <a class="card__link btn btn--big btn--orange" 
+        <a class="card__link defeat btn btn--big btn--orange" 
            href="#" 
            next="card--battleground">
           <span class="btn__prompt">></span>
@@ -181,24 +181,26 @@
     </section>
 
     <section id="battleground" class="card card--battleground">
-      <div class="row">
+      <div class="row center-align">
         <div class="col-md-2">
           <img src="styles/images/hero.png" alt="">
         </div>
         <div class="col-md-3">
-          <h4>Hero Stats</h4>
-          <ul id="heroStats">
+          <h4 class="center-align">Hero Stats</h4>
+          <ul class="heroStats">
               
           </ul>
         </div>
-        <div class="col-md-3">
-          <h4>Enemy Stats</h4>
-          <ul id="enemyStats">
-              
-          </ul>
-        </div>
-        <div class="col-md-2">
-          <img src="styles/images/monster.png" alt="">
+        <div class="col-md-3 col-md-offset-4 row">
+          <div class="col-md-4">
+            <h4 class="center-align">Enemy Stats</h4>
+            <ul class="enemyStats">
+                
+            </ul>
+          </div>
+          <div class="col-md-8">
+            <img src="styles/images/monster.png" alt="">
+          </div>
         </div>
       </div>
     </section>

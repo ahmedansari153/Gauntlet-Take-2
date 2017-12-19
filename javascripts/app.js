@@ -46,11 +46,11 @@ $(document).ready(function() {
         moveAlong = (charValues.charClass !== "")
         if (hero.class.magical) {
           $('#magicWeap').show();
-          $('#kineticWeap').hide();
+          $('.kineticWeap').hide();
         }
         else {
           $('#magicWeap').hide();
-          $('#kineticWeap').show();
+          $('.kineticWeap').show();
         }
         break;
       case "card--battleground":
@@ -62,11 +62,11 @@ $(document).ready(function() {
       console.log(hero)
     }
     if (moveAlong) {
+      console.log(hero)
       $(".card").hide();
       $("." + nextCard).show();
     }
   });
-
   /*
     When the back button clicked, move back a view
    */
@@ -79,4 +79,42 @@ $(document).ready(function() {
     $("." + previousCard).show();
   });
 
+  function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  var monster = function() {
+    var monsters = ["Orc", "Goblin", "Tauren"];
+    var randomNum = getRandomIntInclusive(0, 2);
+    console.log(randomNum)
+    var generated = new Gauntlet.Combatants[monsters[randomNum]]();
+    return generated;
+  }
+
+  $('.defeat').click(function(event) {
+    console.log(hero)
+    var villain = monster();
+    console.log(villain)
+    $('.heroStats').append(
+      "<li>Health: " + hero.health + "</li>" +
+      "<li>Intelligence: " + hero.intelligence + "</li>" +
+      "<li>Strength: " + hero.strength + "</li>" +
+      "<li>Level: " + hero.level + "</li>" +  
+      "<li>Experience: " + hero.experience + "</li>"
+      )
+    $('.enemyStats').append(
+      "<li>Health: " + villain.health + "</li>" +
+      "<li>Intelligence: " + villain.intelligence + "</li>" +
+      "<li>Strength: " + villain.strength + "</li>" +
+      "<li>Level: " + villain.level + "</li>"
+      )
+    $('#attack').click(function(event) {
+      villain.health -= hero.strength
+      if (villain.health <= 0) {
+        i++;
+      }
+    });     
+  });
 });

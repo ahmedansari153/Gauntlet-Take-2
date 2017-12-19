@@ -29,7 +29,7 @@ Bow.prototype = new Weapon();
 var BroadSword = function() {
   this.name = "broad sword";
   this.damage = 14;
-  this.stealth = -1;
+  this.stealth = 0;
   this.accuracy = 75;
 };
 BroadSword.prototype = new Weapon();
@@ -37,7 +37,7 @@ BroadSword.prototype = new Weapon();
 var WarAxe = function() {
   this.name = "war axe";
   this.damage = 18;
-  this.stealth = 0;
+  this.stealth = -1;
   this.accuracy = 75
 };
 

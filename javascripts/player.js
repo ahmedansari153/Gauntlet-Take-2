@@ -14,13 +14,14 @@ Gauntlet.Combatants.Player = function(name) {
   this.weapon = null;
 
   this.playerName = name || "unknown adventurer";
-  this.health = Math.floor(Math.random() * 40 + 50);
+  this.health = 300;
   this.limbs = ["head", "neck", "arm", "leg", "torso"];
   this.skinColor = "gray";
   this.skinColors = [this.skinColor];
   this.strength = 90;
   this.intelligence = 90;
-
+  this.level = 1;
+  this.experience = 0;
   this.toString = function() {
     var output = [this.playerName,
       ": a ",
@@ -74,15 +75,13 @@ Gauntlet.Combatants.Human = function() {
   var randomSkin;
 
   this.species = "Human";
-  this.intelligence = this.intelligence + 20;
+  this.intelligence = this.intelligence + 15;
 
   this.skinColors.push("brown", "red", "white", "disease");
   randomSkin = Math.round(Math.random() * (this.skinColors.length-1));
   this.skinColor = this.skinColors[randomSkin];
 
   this.allowedClasses = ["Warrior", "Berserker", "Valkyrie", "Monk", "Ninja"];
-  this.level = 1;
-  this.experience = 0;
 };
 
 Gauntlet.Combatants.Human.prototype = new Gauntlet.Combatants.Player();
@@ -122,7 +121,6 @@ Gauntlet.Combatants.Elf.prototype = new Gauntlet.Combatants.Player();
   constructor function.
  */
 Gauntlet.Combatants.Monster = function() {
-  this.health = this.health - 30;
   this.intelligence = this.intelligence -20;
   this.strength = this.strength + 30;
 };
