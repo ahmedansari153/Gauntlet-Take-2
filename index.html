@@ -13,16 +13,8 @@
 
   <article id="game-container">
     <section id="player-setup" class="card card--race">
-      <div class="row">
+      <div class="row card__prompt">
         <div>choose your Race</div>
-        <div>
-          <a class="card__back btn btn--small" 
-             href="#"
-             previous="card--class">
-            <span class="btn__prompt">&lt;</span>
-            <span class="btn__text">Back</span>
-          </a>          
-        </div>
         <div class="container-fluid">
           <div class="row" id="kineticWeap">
             <div class="col-sm-4">
@@ -61,6 +53,14 @@
     <section  class="card card--name">
       <div class="card__prompt">
         <div>RECORD YOUR NAME, ADVENTURER</div>
+        <div>
+          <a class="card__back btn btn--small" 
+             href="#"
+             previous="card--race">
+            <span class="btn__prompt">&lt;</span>
+            <span class="btn__text">Back</span>
+          </a>          
+        </div>
         <div class="field">
           <input type="text" autofocus="true" id="player-name" class="field__textinput">
         </div>

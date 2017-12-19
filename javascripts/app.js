@@ -23,11 +23,11 @@ $(document).ready(function() {
           console.log(hero.allowedClasses[i]);
           //Only show the allowed classes in the DOM
           $('#class-btns').append(
-              "<div class="+'col-sm-4'+">"+
-                "<div class="+'card__button'+">" +
-                "<a class="+'class__link btn btn--big btn--blue'+" href=#" +hero.allowedClasses[i] + ">" +
-                  "<span class="+'btn__prompt'+">></span>" +
-                  "<span class="+'btn__text'+">" + hero.allowedClasses[i] + "</span>" +
+              "<div class=\"col-sm-4\">"+
+                "<div class=\"card__button\">" +
+                "<a class=\"class__link btn btn--big btn--blue\" href=#" +hero.allowedClasses[i] + ">" +
+                  "<span class=\"btn__prompt\">></span>" +
+                  "<span class=\"btn__text\">" + hero.allowedClasses[i] + "</span>" +
                 "</a>" +
               "</div>"
             )
@@ -72,6 +72,9 @@ $(document).ready(function() {
    */
   $(".card__back").click(function(e) {
     var previousCard = $(this).attr("previous");
+    if (previousCard == "card--name") {
+      $('#class-btns').empty();
+    }
     $(".card").hide();
     $("." + previousCard).show();
   });
