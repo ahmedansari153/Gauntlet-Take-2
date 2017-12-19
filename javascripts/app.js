@@ -1,30 +1,13 @@
-/*
-  Test code to generate a human player and an orc player
- */
-var warrior = new Gauntlet.Combatants.Human();
-warrior.setWeapon(new WarAxe());
-warrior.generateClass();  // This will be used for "Surprise me" option
-console.log(warrior.toString());
-
-var orc = new Gauntlet.Combatants.Orc();
-orc.generateClass();
-orc.setWeapon(new BroadSword());
-console.log(orc.toString());
-
-/*
-  Test code to generate a spell
- */
 var spell = new Gauntlet.SpellBook.Sphere();
 console.log("spell: ", spell.toString());
 
-
 $(document).ready(function() {
-  var hero = new Gauntlet.Combatants.Human();
   /*
     Show the initial view that accepts player name
    */
   $("#player-setup").show();
   var charValues= []
+  var hero;
   /*
     When any button with card__link class is clicked,
     move on to the next view.
@@ -36,19 +19,48 @@ $(document).ready(function() {
       case "card--class":
         charValues.heroName = $('#player-name').val();
         moveAlong = (charValues.heroName !== "");
+        for (var i = 0; i < hero.allowedClasses.length; i++) {
+          console.log(hero.allowedClasses[i]);
+          //Only show the allowed classes in the DOM
+          $('#class-btns').append(
+              "<div class=\"col-sm-4\">"+
+                "<div class=\"card__button\">" +
+                "<a class=\"class__link btn btn--big btn--blue\" href=#" +hero.allowedClasses[i] + ">" +
+                  "<span class=\"btn__prompt\">></span>" +
+                  "<span class=\"btn__text\">" + hero.allowedClasses[i] + "</span>" +
+                "</a>" +
+              "</div>"
+            )
+        }
+        break;
+      case "card--name":
+        charValues.race = window.location.hash.substr(1);
+        //Create our hero depending on the race pick.
+        hero = new Gauntlet.Combatants[charValues.race]();
+        moveAlong = (charValues.race !== "")
+        console.log(hero)
         break;
       case "card--weapon":
         charValues.charClass = window.location.hash.substr(1);
+        hero.setClass(new Gauntlet.GuildHall[charValues.charClass]());
         moveAlong = (charValues.charClass !== "")
+        if (hero.class.magical) {
+          $('#magicWeap').show();
+          $('#kineticWeap').hide();
+        }
+        else {
+          $('#magicWeap').hide();
+          $('#kineticWeap').show();
+        }
         break;
       case "card--battleground":
         charValues.weapon = window.location.hash.substr(1);
-        hero.setName(charValues.heroName);
-        hero.setWeapon(new window[charValues.weapon]());
-        hero.setClass(new Gauntlet.GuildHall[charValues.charClass]());
         moveAlong = (charValues.weapon !== "");
     }
-
+    if (charValues.race && charValues.heroName && charValues.weapon) {
+      hero.setWeapon(new window[charValues.weapon]());
+      console.log(hero)
+    }
     if (moveAlong) {
       $(".card").hide();
       $("." + nextCard).show();
@@ -60,6 +72,9 @@ $(document).ready(function() {
    */
   $(".card__back").click(function(e) {
     var previousCard = $(this).attr("previous");
+    if (previousCard == "card--name") {
+      $('#class-btns').empty();
+    }
     $(".card").hide();
     $("." + previousCard).show();
   });
