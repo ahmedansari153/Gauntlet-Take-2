@@ -25,6 +25,7 @@ Gauntlet.Combatants.Goblin = function() {
   this.species = "Goblin";
   this.allowedClasses = ["Warrior", "Shaman", "Mage"];
   this.selectedMonster = false;
+
   this.generateClass();
 };
 

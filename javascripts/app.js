@@ -1,6 +1,6 @@
 var spell = new Gauntlet.SpellBook.Sphere();
 console.log("spell: ", spell.toString());
-
+var objects = []
 $(document).ready(function() {
   /*
     Show the initial view that accepts player name
@@ -88,33 +88,35 @@ $(document).ready(function() {
   var monster = function() {
     var monsters = ["Orc", "Goblin", "Tauren"];
     var randomNum = getRandomIntInclusive(0, 2);
-    console.log(randomNum)
     var generated = new Gauntlet.Combatants[monsters[randomNum]]();
+    if (generated.class.magical) {
+      generated.weapon = new Staff();
+    }
+    else {
+      generated.weapon = new WarAxe();
+    }
     return generated;
   }
-
   $('.defeat').click(function(event) {
     console.log(hero)
     var villain = monster();
     console.log(villain)
+    objects.player = hero;
+    objects.enemy = villain
+    hero.strength += hero.class.strengthBonus;
+    console.log(hero.class.strengthBonus)
     $('.heroStats').append(
-      "<li>Health: " + hero.health + "</li>" +
-      "<li>Intelligence: " + hero.intelligence + "</li>" +
-      "<li>Strength: " + hero.strength + "</li>" +
-      "<li>Level: " + hero.level + "</li>" +  
-      "<li>Experience: " + hero.experience + "</li>"
-      )
+      "<li>Health: " + objects.player.health + "</li>" +
+      "<li>Intelligence: " + objects.player.intelligence + "</li>" +
+      "<li>Strength: " + objects.player.strength + "</li>" +
+      "<li>Level: " + objects.player.level + "</li>" +  
+      "<li>Experience: " + objects.player.experience + "</li>"
+    )
     $('.enemyStats').append(
-      "<li>Health: " + villain.health + "</li>" +
-      "<li>Intelligence: " + villain.intelligence + "</li>" +
-      "<li>Strength: " + villain.strength + "</li>" +
-      "<li>Level: " + villain.level + "</li>"
-      )
-    $('#attack').click(function(event) {
-      villain.health -= hero.strength
-      if (villain.health <= 0) {
-        i++;
-      }
-    });     
-  });
+      "<li>Health: " + objects.enemy.health + "</li>" +
+      "<li>Intelligence: " + objects.enemy.intelligence + "</li>" +
+      "<li>Strength: " + objects.enemy.strength + "</li>" +
+      "<li>Level: " + objects.enemy.level + "</li>"
+    ) 
+  }); 
 });
