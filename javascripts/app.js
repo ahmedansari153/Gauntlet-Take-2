@@ -103,9 +103,16 @@ $(document).ready(function() {
     console.log(villain)
     objects.player = hero;
     objects.enemy = villain
-    hero.strength += hero.class.strengthBonus;
+    //Assign bonuses to player
+    objects.player.health += objects.player.class.healthBonus;
+    objects.player.strength += objects.player.class.strengthBonus;
+    objects.player.intelligence += objects.player.class.intelligenceBonus;
+    objects.player.strength += objects.player.class.stealthBonus;
+
     console.log(hero.class.strengthBonus)
     $('.heroStats').append(
+      "<li>Race: " + objects.player.species + "</li>" +
+      "<li>Class: " + objects.player.class.name + "</li>" +
       "<li>Health: " + objects.player.health + "</li>" +
       "<li>Intelligence: " + objects.player.intelligence + "</li>" +
       "<li>Strength: " + objects.player.strength + "</li>" +
@@ -113,6 +120,8 @@ $(document).ready(function() {
       "<li>Experience: " + objects.player.experience + "</li>"
     )
     $('.enemyStats').append(
+      "<li>Race: " + objects.enemy.species + "</li>" +
+      "<li>Class: " + objects.enemy.class.name + "</li>" +
       "<li>Health: " + objects.enemy.health + "</li>" +
       "<li>Intelligence: " + objects.enemy.intelligence + "</li>" +
       "<li>Strength: " + objects.enemy.strength + "</li>" +

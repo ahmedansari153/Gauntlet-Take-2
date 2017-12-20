@@ -36,7 +36,7 @@ $(document).ready(function() {
       "<li>Level: " + objects.enemy.level + "</li>"
     ) 
 
-    if (i < 3) {
+    if (i < 2) {
     	console.log(i)
       objects.enemy.health -= objects.player.strength
       if (objects.enemy.health <= 0) {
