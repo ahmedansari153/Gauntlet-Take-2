@@ -1,6 +1,6 @@
 var spell = new Gauntlet.SpellBook.Sphere();
 console.log("spell: ", spell.toString());
-
+var objects = []
 $(document).ready(function() {
   /*
     Show the initial view that accepts player name
@@ -46,11 +46,11 @@ $(document).ready(function() {
         moveAlong = (charValues.charClass !== "")
         if (hero.class.magical) {
           $('#magicWeap').show();
-          $('#kineticWeap').hide();
+          $('.kineticWeap').hide();
         }
         else {
           $('#magicWeap').hide();
-          $('#kineticWeap').show();
+          $('.kineticWeap').show();
         }
         break;
       case "card--battleground":
@@ -62,11 +62,11 @@ $(document).ready(function() {
       console.log(hero)
     }
     if (moveAlong) {
+      console.log(hero)
       $(".card").hide();
       $("." + nextCard).show();
     }
   });
-
   /*
     When the back button clicked, move back a view
    */
@@ -79,4 +79,53 @@ $(document).ready(function() {
     $("." + previousCard).show();
   });
 
+  function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  var monster = function() {
+    var monsters = ["Orc", "Goblin", "Tauren"];
+    var randomNum = getRandomIntInclusive(0, 2);
+    var generated = new Gauntlet.Combatants[monsters[randomNum]]();
+    if (generated.class.magical) {
+      generated.weapon = new Staff();
+    }
+    else {
+      generated.weapon = new WarAxe();
+    }
+    return generated;
+  }
+  $('.defeat').click(function(event) {
+    console.log(hero)
+    var villain = monster();
+    console.log(villain)
+    objects.player = hero;
+    objects.enemy = villain
+    //Assign bonuses to player
+    objects.player.health += objects.player.class.healthBonus;
+    objects.player.strength += objects.player.class.strengthBonus;
+    objects.player.intelligence += objects.player.class.intelligenceBonus;
+    objects.player.strength += objects.player.class.stealthBonus;
+
+    console.log(hero.class.strengthBonus)
+    $('.heroStats').append(
+      "<li>Race: " + objects.player.species + "</li>" +
+      "<li>Class: " + objects.player.class.name + "</li>" +
+      "<li>Health: " + objects.player.health + "</li>" +
+      "<li>Intelligence: " + objects.player.intelligence + "</li>" +
+      "<li>Strength: " + objects.player.strength + "</li>" +
+      "<li>Level: " + objects.player.level + "</li>" +  
+      "<li>Experience: " + objects.player.experience + "</li>"
+    )
+    $('.enemyStats').append(
+      "<li>Race: " + objects.enemy.species + "</li>" +
+      "<li>Class: " + objects.enemy.class.name + "</li>" +
+      "<li>Health: " + objects.enemy.health + "</li>" +
+      "<li>Intelligence: " + objects.enemy.intelligence + "</li>" +
+      "<li>Strength: " + objects.enemy.strength + "</li>" +
+      "<li>Level: " + objects.enemy.level + "</li>"
+    ) 
+  }); 
 });

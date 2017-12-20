@@ -25,6 +25,7 @@ Gauntlet.Combatants.Goblin = function() {
   this.species = "Goblin";
   this.allowedClasses = ["Warrior", "Shaman", "Mage"];
   this.selectedMonster = false;
+
   this.generateClass();
 };
 
@@ -35,7 +36,7 @@ Gauntlet.Combatants.Tauren = function() {
   this.species = "Goblin";
   this.allowedClasses = ["Warrior", "Monk", "Shaman"];
   this.selectedMonster = false;
-  this.generateClass(); 
+  this.generateClass();
 };
 
-Gauntlet.Combatants.Goblin.prototype = new Gauntlet.Combatants.Monster();
+Gauntlet.Combatants.Tauren.prototype = new Gauntlet.Combatants.Monster();

@@ -123,3 +123,39 @@ Gauntlet.GuildHall.Sorcerer.prototype = new Gauntlet.GuildHall.Mage();
       - Assassin
  */
 
+Gauntlet.GuildHall.PickPocket = function() {
+  this.name = "PickPocket";
+  this.healthBonus = this.healthBonus - 10;
+  this.strengthBonus = this.strengthBonus - 5;
+  this.stealthBonus = this.stealthBonus + 5;
+};
+
+Gauntlet.GuildHall.PickPocket.prototype = new Gauntlet.GuildHall.PlayerClass();
+
+Gauntlet.GuildHall.Thief = function() {
+  this.name = "Thief";
+  this.healthBonus = this.healthBonus - 15;
+  this.strengthBonus = this.strengthBonus - 5;
+  this.stealthBonus = this.stealthBonus + 5;
+};
+
+Gauntlet.GuildHall.Thief.prototype = new Gauntlet.GuildHall.PickPocket();
+
+Gauntlet.GuildHall.Assassin = function() {
+  this.name = "Thief";
+  this.healthBonus = this.healthBonus - 20;
+  this.strengthBonus = this.strengthBonus - 5;
+  this.stealthBonus = this.stealthBonus + 10;
+};
+
+Gauntlet.GuildHall.Assassin.prototype = new Gauntlet.GuildHall.PickPocket();
+
+
+Gauntlet.GuildHall.Ninja = function() {
+  this.name = "Thief";
+  this.healthBonus = this.healthBonus - 25;
+  this.strengthBonus = this.strengthBonus - 5;
+  this.stealthBonus = this.stealthBonus + 15;
+};
+
+Gauntlet.GuildHall.Ninja.prototype = new Gauntlet.GuildHall.PickPocket();
