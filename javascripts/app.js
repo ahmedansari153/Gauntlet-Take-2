@@ -108,7 +108,13 @@ $(document).ready(function() {
     objects.player.strength += objects.player.class.strengthBonus;
     objects.player.intelligence += objects.player.class.intelligenceBonus;
     objects.player.strength += objects.player.class.stealthBonus;
-
+    if (hero.class.magical) {
+      for (var i = 0; i < objects.player.class.allowedSplls.length; i++) {
+        $('#attackBtns').append(
+          "<button id=\""+ objects.player.class.allowedSplls[i] +"\">"+ objects.player.class.allowedSplls[i] +"</button>"
+        )
+      }
+    }
     console.log(hero.class.strengthBonus)
     $('.heroStats').append(
       "<li>Race: " + objects.player.species + "</li>" +

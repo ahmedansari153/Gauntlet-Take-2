@@ -5,7 +5,7 @@ var Weapon = function() {
   this.stealth = 0;
   this.accuracy = 100;
   this.toString = function() {
-    return this.name;
+  return this.name;
   }
 };
 

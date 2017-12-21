@@ -22,8 +22,9 @@ Gauntlet.Combatants.Orc.prototype = new Gauntlet.Combatants.Monster();
 
 Gauntlet.Combatants.Goblin = function() {
   this.health = this.health + 10;
+  this.intelligence += 10;
   this.species = "Goblin";
-  this.allowedClasses = ["Warrior", "Shaman", "Mage"];
+  this.allowedClasses = ["Warrior", "Shaman", "Conjurer"];
   this.selectedMonster = false;
 
   this.generateClass();

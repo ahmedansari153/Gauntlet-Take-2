@@ -22,6 +22,8 @@ Gauntlet.Combatants.Player = function(name) {
   this.intelligence = 90;
   this.level = 1;
   this.experience = 0;
+  this.sttsEffects = [];
+  this.spells = []
   this.toString = function() {
     var output = [this.playerName,
       ": a ",
@@ -76,7 +78,6 @@ Gauntlet.Combatants.Human = function() {
 
   this.species = "Human";
   this.intelligence = this.intelligence + 15;
-
   this.skinColors.push("brown", "red", "white", "disease");
   randomSkin = Math.round(Math.random() * (this.skinColors.length-1));
   this.skinColor = this.skinColors[randomSkin];

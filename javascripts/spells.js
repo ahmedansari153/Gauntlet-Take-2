@@ -12,7 +12,7 @@ Gauntlet.SpellBook.Spell = function() {
   this.name = "";
   this.damage = 0;
 
-  this.damageTypes = ["lightning", "fire", "water", "earth", "mysticism"];
+  this.damageTypes = ["lightning", "fire", "ice", "earth", "mysticism"];
   this.type = "";
 
   this.toString = function() {
@@ -25,7 +25,7 @@ Gauntlet.SpellBook.Spell = function() {
  */
 Gauntlet.SpellBook.Sphere = function() {
   this.name = "sphere";
-  this.damage = Math.floor(Math.random() * 10 + 10);
+  this.damage = 20;
 
   var random = Math.round(Math.random() * (this.damageTypes.length - 1));
   this.type = this.damageTypes[random];
@@ -34,8 +34,27 @@ Gauntlet.SpellBook.Sphere.prototype = new Gauntlet.SpellBook.Spell();
 
 Gauntlet.SpellBook.Fira = function() {
   this.name = "fira";
-  this.damage = Math.floor(Math.random() * 10 + 10);
-  var random = Math.round(Math.random() * (this.damageTypes.length - 1));
-  this.type = this.damageTypes[random];
+  this.damage = 10;
+  this.type = this.damageTypes['fire'];
+  this.burnChnc = 15;
 };
-Gauntlet.SpellBook.Sphere.prototype = new Gauntlet.SpellBook.Spell();
+Gauntlet.SpellBook.Fira.prototype = new Gauntlet.SpellBook.Spell();
+
+
+Gauntlet.SpellBook.Blizzara = function() {
+  this.name = "Blizzara";
+  this.damage = 15;
+  this.type = this.damageTypes['ice'];
+  this.freezeChnc = 10;
+
+};
+Gauntlet.SpellBook.Blizzara.prototype = new Gauntlet.SpellBook.Spell();
+
+Gauntlet.SpellBook.Thundara = function() {
+  this.name = "Blizzara";
+  this.damage = 8;
+  this.type = this.damageTypes['lightning'];
+  this.shockChnc = 25;
+
+};
+Gauntlet.SpellBook.Thundara.prototype = new Gauntlet.SpellBook.Spell();

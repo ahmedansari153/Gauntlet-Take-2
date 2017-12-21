@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  var i=0;
   function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -18,11 +17,13 @@ $(document).ready(function() {
     }
     return generated;
   }
-  $('#attack').click(function(event) {
+  function updateStats() {
   	$('.heroStats').empty();
   	$('.enemyStats').empty();
 
-  	$('.heroStats').append(
+  	 $('.heroStats').append(
+      "<li>Race: " + objects.player.species + "</li>" +
+      "<li>Class: " + objects.player.class.name + "</li>" +
       "<li>Health: " + objects.player.health + "</li>" +
       "<li>Intelligence: " + objects.player.intelligence + "</li>" +
       "<li>Strength: " + objects.player.strength + "</li>" +
@@ -30,22 +31,33 @@ $(document).ready(function() {
       "<li>Experience: " + objects.player.experience + "</li>"
     )
     $('.enemyStats').append(
+      "<li>Race: " + objects.enemy.species + "</li>" +
+      "<li>Class: " + objects.enemy.class.name + "</li>" +
       "<li>Health: " + objects.enemy.health + "</li>" +
       "<li>Intelligence: " + objects.enemy.intelligence + "</li>" +
       "<li>Strength: " + objects.enemy.strength + "</li>" +
       "<li>Level: " + objects.enemy.level + "</li>"
-    ) 
-
-    if (i < 2) {
-    	console.log(i)
-      objects.enemy.health -= objects.player.strength
-      if (objects.enemy.health <= 0) {
+    )  
+  }
+  function checkGameStatus() {
+  	if (objects.enemy.health <= 0) {
         i++;
         objects.enemy = monster();
-      }
-      if (objects.player.health <= 0) {
-      	alert("game over")
-      }
     }
+    if (objects.player.health <= 0) {
+      	alert("game over")
+  	}
+	}
+  var i=0;
+  $('#Fira').click(function(event) {
+    if (i <= 2) {
+    	console.log(i)
+    	if (objects.player.class.magical) {
+    		objects.enemy.health = objects.player.intelligence * objects.player.weapon.damage
+    		//switch (objects.player.spell)
+    	}
+      checkEnemy();
+    }
+    updateStats();
   }); 
 })
